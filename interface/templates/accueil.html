@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/style.css" />
+    <title>Accueil</title>
+</head>
+<body>
+    <h3>Picture from black and white to color</h3>
+    <form action="/handleUpload" method="post" enctype="multipart/form-data">
+            Choose your picture to colorize: <input type="file" name="photo"/><BR>
+                <input type="submit" value="Upload"/>
+    </form>
+
+    <h6>Make color great again!</h6>
+    <a href="http://127.0.0.1:5000/model/">Launch colorization</a>
+</body>
+</html>
