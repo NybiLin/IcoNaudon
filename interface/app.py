@@ -1,4 +1,4 @@
-from flask import Flask,render_template,url_for, redirect,request, Response
+from flask import Flask,render_template,url_for, redirect,request, Response,send_file,send_from_directory
 from flask_restful import Resource, Api, reqparse
 
 #%matplotlib inline
@@ -310,7 +310,14 @@ def model():
                 ab_val = unnormalize(a[i])
                 rgb = rgb_image(l_val, ab_val)
                 matplotlib.image.imsave("result/img_" + str(i) + ".png", rgb)
-    #return render_template("dashboard.html")
+   
+    return redirect(url_for('view_picture'))
+
+@app.route("/get_result")
+def view_picture():
+    DOSSIER="/Users/arnaudbaleh/python-docs-hello-world/result/"
+    images = [img for img in os.listdir(DOSSIER)]
+    return render_template('rendu.html',images=images)
 
 if __name__ == "__main__":
     app.run(debug=True)
