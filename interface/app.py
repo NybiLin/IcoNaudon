@@ -32,6 +32,9 @@ from keras.initializers import RandomNormal, Zeros
 app = Flask(__name__)
 api = Api(app)  # type: Api
 
+PICTURES_FOLDER = os.path.join('static', 'result')
+app.config['UPLOAD_FOLDER'] = PICTURES_FOLDER
+
 @app.route("/")
 def accueil_page():
     return render_template("accueil.html")
@@ -309,15 +312,22 @@ def model():
                 l_val = unnormalize(samples[i])
                 ab_val = unnormalize(a[i])
                 rgb = rgb_image(l_val, ab_val)
-                matplotlib.image.imsave("result/img_" + str(i) + ".png", rgb)
+                matplotlib.image.imsave("static/result/img_" + str(i) + ".png", rgb)
    
     return redirect(url_for('view_picture'))
 
 @app.route("/get_result")
 def view_picture():
-    DOSSIER="/Users/arnaudbaleh/python-docs-hello-world/result/"
-    images = [img for img in os.listdir(DOSSIER)]
-    return render_template('rendu.html',images=images)
+    imgs = []
+    path = "/Users/arnaudbaleh/python-docs-hello-world/static/result/"
+    for f in os.listdir(path):
+        imgs.append(f)
+
+    taille = len(imgs) - 1
+    picture = imgs[taille]
+    #picture = "'" + picture + "'"
+    full_filename = os.path.join(app.config['UPLOAD_FOLDER'], picture)
+    return render_template("rendu.html", image_color=full_filename)
 
 if __name__ == "__main__":
     app.run(debug=True)
