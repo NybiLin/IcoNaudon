@@ -172,7 +172,7 @@ def model():
 
     taille = len(imgs) - 1
     picture = imgs[taille]
-    picture = picture + '"'
+    picture = picture
     full_name = path + picture
     img = imgtoSizeNeeded(full_name, (224, 224))
     gray_scale = np.concatenate((gray_scale, img), axis=0)
@@ -226,8 +226,8 @@ def model():
     model.compile(optimizer='adam', loss='mse', metrics=['acc'])
     model.summary()
 
-    model = load_model('projetDL/model.h5')
-    #model = load_model('model.h5')
+    #model = load_model('projetDL/model.h5')
+    model = load_model('model.h5')
     # summarize model.
     model.summary()
 
@@ -238,14 +238,14 @@ def model():
     plt.figure()
     plt.set_cmap('gray')
     #start_time = time.time()
-    chrono_over = 0
-    while !chrono_over:
+    chrono_not_over = True
+    while chrono_not_over:
         for i in range(a.shape[0]):
             l_val = unnormalize(samples[i])
             ab_val = unnormalize(a[i])
             rgb = rgb_image(l_val, ab_val)
             matplotlib.image.imsave("static/result/img_" + str(i) + ".png", rgb)
-        chrono_over = 1
+        break
 
 
     return redirect(url_for('view_picture'))
@@ -287,4 +287,3 @@ def view_picture():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
