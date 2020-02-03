@@ -5,3 +5,15 @@ input {
 input:hover {
 	cursor: pointer;
 }
+.renduTitre {
+  text-align: center:
+  height: 100px;
+  color: white;
+  font-weight: bold;
+  background-color: red; /* For browsers that do not support gradients */
+  background-image: linear-gradient(red, green);
+}
+.renduDiv {
+    border: dashed 5px;
+    background-image: linear-gradient(blue, yellow);
+}
