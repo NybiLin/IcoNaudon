@@ -1,5 +1,7 @@
 # IcoNaudon
 
+Note : That branch is currently not updated, to get the updated version check the 0.x-web version with x being the highest number possible
+
 --FR--
 
 Projet ayant pour finalité de retoucher des images en noir et blanc
